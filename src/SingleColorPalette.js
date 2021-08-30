@@ -32,7 +32,7 @@ export default class SingleColorPalette extends Component {
         const { paletteName, emoji, id } = this.props.palette;
         const { format } = this.state;
         const colorBoxes = this._shades.map(c => (
-            <ColorBox name={c.name} key={c.name} background={c[format]} showLink={false} />
+            <ColorBox name={c.name} key={c.name} background={c[format]} showingFullPalette={false} />
         ));
         return (
             <div className="SingleColorPalette Palette">
