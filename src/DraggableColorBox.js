@@ -1,7 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/styles';
 
-import chroma from 'chroma-js';
+// import chroma from 'chroma-js';
 
 import DeleteIcon from '@material-ui/icons/Delete';
 
@@ -29,7 +29,7 @@ const styles = {
         left: "0px",
         bottom: "0px",
         padding: "10px",
-        color: props => chroma(props.color).luminance() <= 0.11 ? "white" : "rgba(0, 0, 0, 0.7)",
+        color: "rgba(0, 0, 0, 0.7)",
         letterSpacing: "1px",
         textTransform: "uppercase",
         fontSize: "12px",
