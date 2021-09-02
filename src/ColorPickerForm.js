@@ -15,12 +15,12 @@ export default class ColorPickerForm extends Component {
     }
     componentDidMount(){
         ValidatorForm.addValidationRule('isNameUnique', (value) => 
-            this.state.colors.every(
+            this.props.colors.every(
             ({name}) => name.toLowerCase() !== value.toLowerCase()
             )
         );
         ValidatorForm.addValidationRule('isColorUnique', () => 
-            this.state.colors.every(
+            this.props.colors.every(
             ({color}) => color !== this.state.currentColor
             )
         );

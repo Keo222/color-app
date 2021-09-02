@@ -92,19 +92,6 @@ class NewPaletteForm extends Component {
   };
   };
 
-  componentDidMount(){
-    ValidatorForm.addValidationRule('isNameUnique', (value) => 
-      this.state.colors.every(
-        ({name}) => name.toLowerCase() !== value.toLowerCase()
-      )
-    );
-    ValidatorForm.addValidationRule('isColorUnique', () => 
-      this.state.colors.every(
-        ({color}) => color !== this.state.currentColor
-      )
-    );
-  }
-
   handleDrawerOpen = () => {
     this.setState({ open: true });
   };
@@ -197,6 +184,7 @@ class NewPaletteForm extends Component {
             paletteFull={paletteFull}
             updateCurrentColor={this.updateCurrentColor}
             addNewColor={this.addNewColor}
+            colors={colors}
           />
         </Drawer>
         <main
