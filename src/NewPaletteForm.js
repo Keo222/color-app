@@ -93,9 +93,9 @@ class NewPaletteForm extends Component {
   addNewColor = (newColor) => {
     this.setState({colors: [...this.state.colors, newColor]})
   };
-  handleSubmit = (newPaletteName) => {
+  handleSubmit = (newPaletteName, emoji) => {
     let newId = newPaletteName.toLowerCase().replace(/ /g, "-")
-    const newPalette = {paletteName: newPaletteName, id: newId, colors: this.state.colors, emoji: "hi"}
+    const newPalette = {paletteName: newPaletteName, id: newId, colors: this.state.colors, emoji: emoji}
     this.props.savePalette(newPalette);
     this.props.history.push("/")
   };
@@ -106,16 +106,34 @@ class NewPaletteForm extends Component {
   clearPalette = () => {
     this.setState({ colors: [] });
   };
-  addRandom = () => {
+  // addRandom = () => {
+  //   const pLength = this.props.palettes.length;
+  //   const rPalette = Math.floor(Math.random() * pLength);
+  //   const cLength = this.props.palettes[rPalette].colors.length;
+  //   const rColor = Math.floor(Math.random() * cLength);
+  //   const randomColor = this.props.palettes[rPalette].colors[rColor];
+  //   this.setState(({colors}) => ({
+  //     colors: [...colors, randomColor]
+  //   }));
+  //   console.log(randomColor)
+  // }
+
+  updatedAddRandom = () => {
     const pLength = this.props.palettes.length;
     const rPalette = Math.floor(Math.random() * pLength);
     const cLength = this.props.palettes[rPalette].colors.length;
     const rColor = Math.floor(Math.random() * cLength);
     const randomColor = this.props.palettes[rPalette].colors[rColor];
-    this.setState(({colors}) => ({
-      colors: [...colors, randomColor]
-    }), console.log(this.state.colors));
+    const colorIncluded = this.state.colors.includes(randomColor)
+    if(colorIncluded){
+      this.updatedAddRandom()
+    } else {
+      this.setState(({colors}) => ({
+        colors: [...colors, randomColor]
+      }));
+    }
   }
+
   onSortEnd = ({oldIndex, newIndex}) => {
     this.setState(({colors}) => ({
       colors: arrayMove(colors, oldIndex, newIndex),
@@ -126,7 +144,7 @@ class NewPaletteForm extends Component {
     const { classes, maxColors, palettes } = this.props;
     const { open, colors, currentColor } = this.state;
     const paletteFull = colors.length >= maxColors;
-
+    console.log(colors)
     return (
       <div className={classes.root}>
         <PaletteFormNav 
@@ -157,7 +175,7 @@ class NewPaletteForm extends Component {
                 variant="contained" 
                 color="primary"
                 disabled = {paletteFull}
-                onClick={this.addRandom}
+                onClick={this.updatedAddRandom}
                 className={classes.button}
               >
                 Random Color

@@ -7,12 +7,16 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
+import 'emoji-mart/css/emoji-mart.css';
+import { Picker } from 'emoji-mart';
+
 export class PaletteMetaForm extends Component {
     constructor(props) {
         super(props);
         this.state = { 
             newPaletteName: "",
-            open: false
+            open: false,
+            emojiOpen: false
         };
     }
     componentDidMount(){
@@ -35,6 +39,26 @@ export class PaletteMetaForm extends Component {
         this.setState({open: false})
     };
 
+    handleEmojiClose = () => {
+        this.setState({emojiOpen: false})
+    };
+
+    savePalette = (em) => {
+        const emoji = em.native
+        this.props.handleSubmit(this.state.newPaletteName, emoji)
+        this.setState({
+            emojiOpen: false
+        })
+    }
+    
+    testSelect = (emoji) => {
+        console.log(emoji)
+    }
+
+    toEmoji = () => {
+        this.setState({open: false, emojiOpen: true})
+    }
+
     render() {
         const {newPaletteName} = this.state;
         return (
@@ -42,23 +66,27 @@ export class PaletteMetaForm extends Component {
             <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
                 Save
             </Button>
+            <Dialog open={this.state.emojiOpen} onClose={this.handleEmojiClose}>
+                <DialogTitle id="form-dialog-title">Choose an Emoji</DialogTitle>
+                <Picker onSelect={this.savePalette}/>
+            </Dialog>
             <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Choose a Palette Name</DialogTitle>
-                <ValidatorForm onSubmit={() => this.props.handleSubmit(newPaletteName)}>
+                <ValidatorForm onSubmit={this.toEmoji}>
                 <DialogContent>
                     <DialogContentText>
                         Please enter a name for your new palette. It must be unique!
                     </DialogContentText>
-                        <TextValidator 
-                            label="Palette Name" 
-                            value={newPaletteName} 
-                            name="newPaletteName"
-                            onChange={this.handleChange}
-                            fullWidth
-                            margin="normal"
-                            validators={["required", 'isPaletteNameUnique']}
-                            errorMessages={["This field is required", "Name must be unique"]}
-                        />
+                    <TextValidator 
+                        label="Palette Name" 
+                        value={newPaletteName} 
+                        name="newPaletteName"
+                        onChange={this.handleChange}
+                        fullWidth
+                        margin="normal"
+                        validators={["required", 'isPaletteNameUnique']}
+                        errorMessages={["This field is required", "Name must be unique"]}
+                    />
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={this.handleClose} color="primary">
