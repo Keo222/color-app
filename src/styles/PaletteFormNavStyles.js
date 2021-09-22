@@ -1,4 +1,5 @@
-import {drawerWidth} from './constants'
+import {drawerWidth} from './constants';
+import sizes from './sizes'
 
 const styles = theme => ({
     root: {
@@ -36,8 +37,14 @@ const styles = theme => ({
         '& a': {
             textDecoration: "none"
         },
+        [sizes.down('xs')]: {
+          marginRight: "0.5rem"
+        },
         '& button': {
-            margin: "5px"
+          margin: "5px",
+          [sizes.down('xs')]: {
+            margin: "0 "
+          },
         }
       }
 });

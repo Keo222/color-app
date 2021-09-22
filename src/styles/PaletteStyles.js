@@ -1,3 +1,5 @@
+import sizes from "./sizes";
+
 const styles = {
     Palette: {
         height: '100vh',
@@ -17,6 +19,18 @@ const styles = {
         marginBottom: "-4px",
         opacity: "1",
         backgroundColor: 'black',
+        [sizes.down("lg")]: {
+            width: "50%",
+            height: "20%"
+        },
+        [sizes.down("md")]: {
+            width: "50%",
+            height: "20%"
+        },
+        [sizes.down("xs")]: {
+            width: "100%",
+            height: "10%"
+        }
     },
     backButton: {
         width: '100px',
