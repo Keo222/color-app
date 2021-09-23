@@ -4,7 +4,7 @@ const styles = {
         border: "1px solid black",
         borderRadius: "5px",
         padding: "0.5rem",
-        paddingBottom: "3rem",
+        paddingBottom: "1rem",
         position: "relative",
         overflow: "hidden",
         cursor: "pointer",
