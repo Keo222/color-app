@@ -3,6 +3,15 @@ import bg from "./bg.svg"
 
 
 const styles = {
+    "@global": {
+        "fade-exit": {
+            opacity: '1',
+            transition: "opacty 500ms ease-out"
+        },
+        "face-exit-active": {
+            opacity: '0'
+        }
+    },
     root: {
         height: "100vh",
         display: "flex",
