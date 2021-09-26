@@ -7,7 +7,7 @@ import styles from './styles/MiniPaletteStyles';
 class MiniPalette extends Component {
     handleDelete = (e) => {
         e.stopPropagation();
-        this.props.deletePalette(this.props.id)
+        this.props.openDialog(this.props.id)
     }
     render() {
     const {classes, paletteName, emoji, colors} = this.props;
