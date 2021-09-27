@@ -1,3 +1,5 @@
+// import chroma from "chroma-js"
+
 const styles = {
     root: {
         width: "100%",
@@ -19,4 +21,4 @@ const styles = {
     }
 }
 
-export default styles
+export default styles 
