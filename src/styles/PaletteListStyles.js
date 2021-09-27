@@ -21,7 +21,9 @@ const styles = {
         // Background from svgbackgrounds.com
         backgroundImage: `URL(${bg})`,
         backgroundAttachment: 'fixed',
-        overflow: 'scroll'
+        overflow: 'scroll',
+        maxWidth: '100%',
+        overflowX: 'hidden'
     },
     heading: {
         fontSize: '2rem'
